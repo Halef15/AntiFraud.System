@@ -1,0 +1,41 @@
+services:
+
+  postgres:
+    # https://www.postgresql.org
+    image: postgres:17
+    hostname: postgresql
+    container_name: postgres-${COMPOSE_PROJECT_NAME}
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: "2GB"
+    networks:
+      - antifraud-network
+    command: ["postgres", "-c", "logging_collector=on", "-c", "log_statement=all"]
+    healthcheck:
+      test: [
+        "CMD-SHELL", 
+        "pg_isready -U ${POSTGRESQL_USERNAME}"
+      ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 2s
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata 
+      POSTGRES_USER: ${POSTGRESQL_USERNAME}
+      POSTGRES_PASSWORD: ${SQL_PASSWORD}
+      POSTGRES_DB: ${SQL_DATABASE}
+
+networks:
+  antifraud-network:
+    driver: bridge
+
+volumes:
+  postgres-data:

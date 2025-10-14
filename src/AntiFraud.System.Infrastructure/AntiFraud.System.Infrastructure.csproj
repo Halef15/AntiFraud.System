@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <Authors>Halef Arthur J. Basso</Authors>
+	  <TargetFramework>net9.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AntiFraud.System.Application\AntiFraud.System.Application.csproj" />
+    <ProjectReference Include="..\AntiFraud.System.Domain\AntiFraud.System.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+	<PackageReference Include="System.Linq.Dynamic.Core" Version="1.6.8" />
+	<PackageReference Include="AspectCore.Extensions.DependencyInjection" Version="2.4.0" />
+	<PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+	<PackageReference Include="Serilog.Enrichers.ClientInfo" Version="2.5.0" />
+	<PackageReference Include="Serilog.Enrichers.Demystifier" Version="1.0.3" />
+	<PackageReference Include="Serilog.Enrichers.Process" Version="3.0.0" />
+	<PackageReference Include="Serilog.Enrichers.Thread" Version="4.0.0" />
+	<PackageReference Include="Serilog.Exceptions" Version="8.4.0" />
+	<PackageReference Include="Serilog.Sinks.Async" Version="2.1.0" />
+	<PackageReference Include="Serilog.Sinks.OpenTelemetry" Version="4.2.0" />
+	<PackageReference Include="OpenTelemetry.AutoInstrumentation" Version="1.12.0" />
+	<PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.13.1" />
+  </ItemGroup>
+
+</Project>

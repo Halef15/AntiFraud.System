@@ -1,0 +1,45 @@
+services:
+  rabbitmq:
+    # Imagem oficial e gratuita do RabbitMQ com a interface de gerenciamento
+    image: rabbitmq:3-management-alpine
+    hostname: rabbitmq
+    container_name: rabbitmq-${COMPOSE_PROJECT_NAME}
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "4"
+          memory: "4GB"
+    networks:
+      - antifraud-network
+    healthcheck:
+      test: "rabbitmq-diagnostics check_port_connectivity"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    ports:
+      - 4369:4369
+      - 5551:5551
+      - 5552:5552
+      - 5672:5672
+      - 25672:25672 # Comunicação entre nós e CLI (erlang)
+      - 15672:15672 # API de gerenciamento web
+    volumes:
+        # O caminho de dados da imagem oficial é /var/lib/rabbitmq
+      - rabbitmq-data:/var/lib/rabbitmq
+    environment:
+      # Variáveis para o nginx-proxy (mantidas)
+      VIRTUAL_HOST: rabbitmq
+      VIRTUAL_PORT: 15672
+      # Variáveis de usuário e senha padrão da imagem oficial
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+
+networks:
+  antifraud-network:
+    driver: bridge
+
+
+volumes:
+  rabbitmq-data:

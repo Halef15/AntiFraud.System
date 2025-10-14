@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".solution items", ".solution items", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		Nuget.config = Nuget.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{64BFB2C5-CFF7-49F1-A87B-FFA6219E3BF9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{97F97B12-C6D3-4549-AB32-159EE0D61D27}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yaml = docker-compose.yaml
+		Dockerfile = Dockerfile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{BD4D92CB-DF81-4F49-B3EC-2FFE0A682F5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntiFraud.System.Domain", "src\AntiFraud.System.Domain\AntiFraud.System.Domain.csproj", "{B232BDF8-8E44-AA72-B99D-23467655054C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntiFraud.System.Application", "src\AntiFraud.System.Application\AntiFraud.System.Application.csproj", "{5155ADDF-A1F2-81A8-BE91-0543F4E788F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntiFraud.System.Infrastructure", "src\AntiFraud.System.Infrastructure\AntiFraud.System.Infrastructure.csproj", "{B983E6B3-1A94-DDA7-3A13-F0AFD9F4C675}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntiFraud.System.BulidingBlocks", "src\AntiFraud.System.BulidingBlocks\AntiFraud.System.BulidingBlocks.csproj", "{96B7063C-36B7-0585-FBBE-5F64151EBC25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntiFraud.System.Api", "src\AntiFraud.System.Api\AntiFraud.System.Api.csproj", "{649341F9-94AB-30B9-F9D2-8324BA892785}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntiFraud.System.Integration.Test", "tests\AntiFraud.System.Integration.Test\AntiFraud.System.Integration.Test.csproj", "{A9EFD598-C8A8-4ACB-5B21-3A3D1CD1B128}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntiFraud.System.Unit.Test", "tests\AntiFraud.System.Unit.Test\AntiFraud.System.Unit.Test.csproj", "{D566127B-9692-D48C-7F66-71F491AF69DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B232BDF8-8E44-AA72-B99D-23467655054C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B232BDF8-8E44-AA72-B99D-23467655054C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B232BDF8-8E44-AA72-B99D-23467655054C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B232BDF8-8E44-AA72-B99D-23467655054C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5155ADDF-A1F2-81A8-BE91-0543F4E788F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5155ADDF-A1F2-81A8-BE91-0543F4E788F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5155ADDF-A1F2-81A8-BE91-0543F4E788F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5155ADDF-A1F2-81A8-BE91-0543F4E788F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B983E6B3-1A94-DDA7-3A13-F0AFD9F4C675}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B983E6B3-1A94-DDA7-3A13-F0AFD9F4C675}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B983E6B3-1A94-DDA7-3A13-F0AFD9F4C675}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B983E6B3-1A94-DDA7-3A13-F0AFD9F4C675}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96B7063C-36B7-0585-FBBE-5F64151EBC25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96B7063C-36B7-0585-FBBE-5F64151EBC25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96B7063C-36B7-0585-FBBE-5F64151EBC25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96B7063C-36B7-0585-FBBE-5F64151EBC25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{649341F9-94AB-30B9-F9D2-8324BA892785}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{649341F9-94AB-30B9-F9D2-8324BA892785}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{649341F9-94AB-30B9-F9D2-8324BA892785}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{649341F9-94AB-30B9-F9D2-8324BA892785}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9EFD598-C8A8-4ACB-5B21-3A3D1CD1B128}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9EFD598-C8A8-4ACB-5B21-3A3D1CD1B128}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9EFD598-C8A8-4ACB-5B21-3A3D1CD1B128}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9EFD598-C8A8-4ACB-5B21-3A3D1CD1B128}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D566127B-9692-D48C-7F66-71F491AF69DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D566127B-9692-D48C-7F66-71F491AF69DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D566127B-9692-D48C-7F66-71F491AF69DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D566127B-9692-D48C-7F66-71F491AF69DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{97F97B12-C6D3-4549-AB32-159EE0D61D27} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{B232BDF8-8E44-AA72-B99D-23467655054C} = {64BFB2C5-CFF7-49F1-A87B-FFA6219E3BF9}
+		{5155ADDF-A1F2-81A8-BE91-0543F4E788F7} = {64BFB2C5-CFF7-49F1-A87B-FFA6219E3BF9}
+		{B983E6B3-1A94-DDA7-3A13-F0AFD9F4C675} = {64BFB2C5-CFF7-49F1-A87B-FFA6219E3BF9}
+		{96B7063C-36B7-0585-FBBE-5F64151EBC25} = {64BFB2C5-CFF7-49F1-A87B-FFA6219E3BF9}
+		{649341F9-94AB-30B9-F9D2-8324BA892785} = {64BFB2C5-CFF7-49F1-A87B-FFA6219E3BF9}
+		{A9EFD598-C8A8-4ACB-5B21-3A3D1CD1B128} = {BD4D92CB-DF81-4F49-B3EC-2FFE0A682F5F}
+		{D566127B-9692-D48C-7F66-71F491AF69DD} = {BD4D92CB-DF81-4F49-B3EC-2FFE0A682F5F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {198556AB-5670-4526-B70C-B536BBA715E0}
+	EndGlobalSection
+EndGlobal

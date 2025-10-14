@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Arquivo de configuração de projetos .NET -->
+<Project>
+	
+	<!-- Propriedades do projeto -->
+	<PropertyGroup>
+		<Authors>Halef Arthur J. Basso</Authors>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<AccelerateBuildsInVisualStudio>false</AccelerateBuildsInVisualStudio>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<TieredPGO>true</TieredPGO>
+
+		<!-- <PackageProjectUrl>https://dev.azure.com/Guislotti/Muralha</PackageProjectUrl> -->
+		<Copyright>Copyright © 2021-2022 Packt Publishing Limited</Copyright>
+	</PropertyGroup>
+
+	<!-- Desabilitar avisos -->
+	<PropertyGroup>
+		<NoWarn>$(NoWarn);1591;CS8632</NoWarn>
+	</PropertyGroup>
+	
+</Project>

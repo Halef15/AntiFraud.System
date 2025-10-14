@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <Authors>Halef Arthur J. Basso</Authors>
+	  <TargetFramework>net9.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AntiFraud.System.BulidingBlocks\AntiFraud.System.BulidingBlocks.csproj" />
+  </ItemGroup>
+
+</Project>

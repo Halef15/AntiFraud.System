@@ -1,0 +1,56 @@
+services:
+   
+  # -> Services -> Databases (Serviços de banco de dados)
+  postgres:
+    restart: no
+    extends:
+      file: docker-compose-postgres.yaml
+      service: postgres
+
+  # -> Services -> Messaging (Mensageria entre serviços)
+  rabbitmq:
+    restart: no
+    extends:
+      file: docker-compose-rabbitmq.yaml
+      service: rabbitmq
+ 
+  # -> Observability (Monitoramento e Logs)
+  # Serviço do coletor OpenTelemetry
+  otel-collector:
+    restart: no
+    extends:
+      file: docker-compose-otel.yaml
+      service: otel-collector
+      
+  # Serviço do Prometheus
+  prometheus:
+    restart: no
+    extends:
+      file: docker-compose-prometheus.yaml
+      service: prometheus
+
+  # Serviço do Aspire Dashboard
+  aspire-dashboard:
+    restart: no
+    extends:
+      file: docker-compose-aspire-dashboard.yaml
+      service: aspire-dashboard
+    depends_on:
+      - otel-collector
+
+networks:
+  antifraud-network:  
+    driver: bridge 
+
+# volumes => \\wsl.localhost\docker-desktop-data\data\docker\volumes
+volumes:
+
+  # -> Databases (Volumes de dados de banco de dados)
+  postgres-data:      # Dados do Postgres
+
+  # -> Messaging (Mensageria)
+  rabbitmq-data:      # Dados do RabbitMQ
+
+  # -> Observability (Monitoramento e Logs)
+  prometheus-data:
+  prometheus-config:

@@ -1,0 +1,80 @@
+# https://opentelemetry.io/docs/collector/configuration/
+# Receivers define as fontes de dados de onde o OpenTelemetry vai receber as métricas, rastreamentos ou logs.
+receivers:
+  # Data sources: traces, metrics, logs
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+        
+  # Data sources: metrics
+  # Optional. Host Metrics Receiver added as an example of Infra Monitoring capabilities of the OpenTelemetry Collector
+  hostmetrics:
+    # https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/hostmetricsreceiver
+    scrapers:
+      cpu:
+      disk:
+      filesystem:
+      load:
+      memory:
+      network:
+      process:
+      processes:
+      paging:
+
+# Exporters define os destinos para onde os dados serão enviados (como Prometheus, OTLP, etc.)
+exporters:
+  debug:
+    verbosity: detailed
+
+  # Prometheus
+  prometheus:
+    endpoint: otel-collector:8889
+    send_timestamps: true
+    resource_to_telemetry_conversion:
+      enabled: true
+
+  # Aspire Dashboard
+  otlp/aspire-dashboard:
+    endpoint: aspire-dashboard:18889
+    tls:
+      insecure: true
+
+# Processors define os processadores que serão usados para manipular os dados recebidos antes de enviá-los para os exporters.
+# https://opentelemetry.io/docs/specs/semconv/resource/
+processors:
+  batch:
+    timeout: 1s
+    send_batch_size: 1024
+
+  resourcedetection:
+    # Enriches telemetry data with resource information from the host
+    # https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/resourcedetectionprocessor
+    detectors: ["env", "system"]
+    override: false
+
+# Extensions define as extensões que podem ser usadas, como monitoramento de saúde ou métricas adicionais.
+extensions:
+  health_check:
+  pprof:
+  zpages:
+    endpoint: otel-collector:55679
+
+# Service configura o pipeline e as extensões do serviço.
+service:
+  extensions: [health_check, pprof, zpages]
+  pipelines:
+    metrics:
+      receivers: [otlp, hostmetrics]
+      processors: [batch, resourcedetection]
+      exporters: [debug, prometheus, otlp/aspire-dashboard]
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [debug, otlp/aspire-dashboard]
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [debug, otlp/aspire-dashboard]

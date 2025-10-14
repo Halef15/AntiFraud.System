@@ -1,0 +1,21 @@
+# Global Configuration: Defines the global scrape settings for Prometheus
+global:
+  scrape_interval: 15s
+  scrape_timeout: 15s
+  evaluation_interval: 20s
+
+# Scrape Configurations: Defines the jobs and targets to scrape metrics from
+scrape_configs:
+  # Prometheus Scrape Configuration: Scrapes metrics from Prometheus server
+  - job_name: 'prometheus'
+    metrics_path: '/metrics'
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['prometheus:9090']
+  
+  # OTEL Collector Scrape Configuration: Scrapes metrics from OpenTelemetry Collector
+  - job_name: 'otel-collector'
+    metrics_path: '/metrics'
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['otel-collector:8889']
