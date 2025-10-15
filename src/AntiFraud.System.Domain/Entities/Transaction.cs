@@ -35,7 +35,6 @@ namespace AntiFraud.System.Domain.Entities
         [Column("status")]
         public TransactionStatus Status { get; private set; }
 
-        // Construtor para o EF Core
         private Transaction() { }
 
         public Transaction(decimal amount, string cardHolder, string cardNumber, string ipAddress, string location, DateTimeOffset transactionDate)
@@ -46,35 +45,40 @@ namespace AntiFraud.System.Domain.Entities
             IpAddress = ipAddress;
             Location = location;
             TransactionDate = transactionDate;
-            Status = TransactionStatus.Pending; // Toda nova transação começa como pendente
+            Status = TransactionStatus.Pending;
         }
 
-        // Métodos que representam o comportamento do negócio
+        // --- MÉTODOS MODIFICADOS ---
+
         public void Approve()
         {
-            if (Status == TransactionStatus.Pending || Status == TransactionStatus.Review)
+            if (Status != TransactionStatus.Pending && Status != TransactionStatus.Review && Status != TransactionStatus.Rejected)
             {
-                Status = TransactionStatus.Approved;
-                UpdatedAt = DateTimeOffset.UtcNow;
+                // Lançar uma exceção informa claramente por que a operação falhou.
+                throw new InvalidOperationException($"Não é possível aprovar uma transação com o status '{Status}'.");
             }
+            Status = TransactionStatus.Approved;
+            UpdatedAt = DateTimeOffset.UtcNow;
         }
 
         public void Reject()
         {
-            if (Status == TransactionStatus.Pending || Status == TransactionStatus.Review)
+            if (Status != TransactionStatus.Pending && Status != TransactionStatus.Review && Status != TransactionStatus.Approved)
             {
-                Status = TransactionStatus.Rejected;
-                UpdatedAt = DateTimeOffset.UtcNow;
+                throw new InvalidOperationException($"Não é possível rejeitar uma transação com o status '{Status}'.");
             }
+            Status = TransactionStatus.Rejected;
+            UpdatedAt = DateTimeOffset.UtcNow;
         }
 
         public void SendToReview()
         {
-            if (Status == TransactionStatus.Pending)
+            if (Status != TransactionStatus.Pending)
             {
-                Status = TransactionStatus.Review;
-                UpdatedAt = DateTimeOffset.UtcNow;
+                throw new InvalidOperationException($"Apenas transações pendentes podem ser enviadas para revisão.");
             }
+            Status = TransactionStatus.Review;
+            UpdatedAt = DateTimeOffset.UtcNow;
         }
     }
 }

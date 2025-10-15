@@ -5,6 +5,7 @@ using AntiFraud.System.Infrastructure.DependencyInjections;
 using AntiFraud.System.Infrastructure.Observability;
 using AntiFraud.System.Infrastructure.Observability.Settings;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,7 +49,13 @@ builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 // 2. Adiciona os serviços do ASP.NET Core
-builder.Services.AddControllers();
+//    CORREÇÃO: Adicionada a configuração para converter Enums em Strings no JSON.
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
+
 
 // 3. Configuração correta do Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();

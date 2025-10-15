@@ -15,7 +15,7 @@ namespace AntiFraud.System.BuildingBlocks.Entities
         public DateTimeOffset CreatedAt { get; private set; }
 
         [Column("updated_at")]
-        public DateTimeOffset? UpdatedAt { get; protected set; }
+        public DateTimeOffset? UpdatedAt { get; set; }
 
         protected EntityBase()
         {
