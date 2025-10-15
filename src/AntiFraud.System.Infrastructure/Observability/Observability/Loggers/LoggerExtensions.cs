@@ -1,6 +1,6 @@
-using Microsoft.Extensions.Logging;
 using AntiFraud.System.Application.Utilities;
 using AntiFraud.System.Infrastructure.Observability.Settings;
+using Microsoft.Extensions.Logging;
 using System.Runtime.CompilerServices;
 using System.Text;
 

@@ -2,7 +2,7 @@
 {
     public enum TransactionStatus
     {
-        Pending,   
+        Pending,
         Approved,
         Rejected,
         Review

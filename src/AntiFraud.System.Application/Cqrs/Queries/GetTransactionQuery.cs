@@ -1,5 +1,5 @@
 ﻿using AntiFraud.System.Application.Models;
-using AntiFraud.System.BuildingBlocks.Responses; 
+using AntiFraud.System.BuildingBlocks.Responses;
 using MediatR;
 
 namespace AntiFraud.System.Application.Cqrs.Queries

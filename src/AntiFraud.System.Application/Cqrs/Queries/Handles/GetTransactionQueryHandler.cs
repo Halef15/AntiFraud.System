@@ -5,7 +5,7 @@ using MediatR;
 
 namespace AntiFraud.System.Application.Cqrs.Queries.Handles
 {
-    public class GetTransactionQueryHandler : 
+    public class GetTransactionQueryHandler :
         IRequestHandler<GetTransactionQuery, Result<TransactionViewModel?>>
     {
         private readonly ITransactionQueryRepository _queryRepository;

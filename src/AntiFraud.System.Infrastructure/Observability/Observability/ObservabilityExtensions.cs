@@ -1,11 +1,12 @@
+using AntiFraud.System.Application.Utilities;
+using AntiFraud.System.Infrastructure.Observability.Settings;
+using AntiFraud.System.Infrastructure.Observability.Tracers;
 using AspectCore.Configuration;
 using AspectCore.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using AntiFraud.System.Infrastructure.Observability.Settings;
-using AntiFraud.System.Infrastructure.Observability.Tracers;
 using OpenTelemetry;
 using OpenTelemetry.Exporter;
 using OpenTelemetry.Metrics;
@@ -17,7 +18,6 @@ using Serilog.Exceptions;
 using Serilog.Exceptions.Core;
 using Serilog.Sinks.OpenTelemetry;
 using System.Diagnostics;
-using AntiFraud.System.Application.Utilities;
 
 namespace AntiFraud.System.Infrastructure.Observability
 {

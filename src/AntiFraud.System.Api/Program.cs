@@ -5,7 +5,6 @@ using AntiFraud.System.Infrastructure.DependencyInjections;
 using AntiFraud.System.Infrastructure.Observability;
 using AntiFraud.System.Infrastructure.Observability.Settings;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
