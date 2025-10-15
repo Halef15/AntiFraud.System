@@ -1,8 +1,10 @@
 using AntiFraud.System.Api.Controllers;
 using AntiFraud.System.Application.DependencyInjections;
+using AntiFraud.System.Infrastructure.Context;
 using AntiFraud.System.Infrastructure.DependencyInjections;
 using AntiFraud.System.Infrastructure.Observability;
 using AntiFraud.System.Infrastructure.Observability.Settings;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -54,6 +56,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+#region Aplicar Migrações Automaticamente
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    await dbContext.Database.MigrateAsync();
+    app.Logger.LogInformation("Migrações do banco de dados aplicadas com sucesso");
+}
+#endregion
 
 // --- Configuração do Pipeline HTTP ---
 
