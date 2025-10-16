@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".solution items", ".solutio
 		.gitignore = .gitignore
 		Directory.Build.props = Directory.Build.props
 		Nuget.config = Nuget.config
-		C:\Users\ha_le\OneDrive\Área de Trabalho\Test\README.md = C:\Users\ha_le\OneDrive\Área de Trabalho\Test\README.md
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{64BFB2C5-CFF7-49F1-A87B-FFA6219E3BF9}"
