@@ -128,25 +128,6 @@ A análise de uma transação deve aplicar as seguintes regras. Uma transação 
 
 ---
 
-## 🎯 Objetivo do teste:
-
-O objetivo deste desafio é avaliar de forma completa a capacidade técnica do candidato no desenvolvimento de soluções backend modernas, utilizando boas práticas de arquitetura, mensageria e persistência de dados.
-
-Durante a correção, serão analisados os seguintes critérios:
-
-- 📦 Modelagem de entidades de domínio (Transação, Análise, Regras)
-- 📊 Implementação correta das regras de negócio (análise de risco)
-- ✉️ Uso adequado de mensageria para processamento assíncrono (evento `TransactionReceived`)
-- 🧪 Cobertura de testes (unitários e integração)
-- 🧱 Organização do código e separação de responsabilidades (Domain, Application, Infrastructure)
-- 🧰 Adoção de boas práticas como uso de CQRS, Repositórios e Design Patterns
-- 🧼 Clareza e padronização de código (nomenclaturas, validações, mensagens de erro)
-- ⚙️ Configuração e documentação (Swagger/OpenAPI, Docker Compose, README funcional)
-
-> Avaliações automatizadas validarão se os contratos REST estão sendo respeitados, incluindo rotas, parâmetros, estrutura de payloads e mensagens de erro.
-
----
-
 ## Estrutura do Projeto
 
 ### Nível Raiz da Solução
