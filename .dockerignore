@@ -1,0 +1,14 @@
+# Pasta de build e arquivos gerados
+[Bb]in/
+[Oo]bj/
+
+# Arquivos de usuário e de IDE que não devem ir para a imagem
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+.vscode/
+
+# Arquivos de log e outros arquivos específicos do S.O.
+*.log
+*.DS_Store

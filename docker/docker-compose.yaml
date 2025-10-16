@@ -1,4 +1,18 @@
 services:
+
+  # -> Services -> Application AntiFraud.System
+  antifraud-api:
+    image: ${DOCKER_REGISTRY-}antifraudapi
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - antifraud-network
+    depends_on:
+      - postgres
+      - rabbitmq
    
   # -> Services -> Databases (Serviços de banco de dados)
   postgres:

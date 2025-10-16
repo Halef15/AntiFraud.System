@@ -1,30 +1,30 @@
-# Acesse https://aka.ms/customizecontainer para saber como personalizar seu contêiner de depuração e como o Visual Studio usa este Dockerfile para criar suas imagens para uma depuração mais rápida.
-
-# Esta fase é usada durante a execução no VS no modo rápido (Padrão para a configuração de Depuração)
-FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
-USER $APP_UID
-WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
-
-
-# Esta fase é usada para compilar o projeto de serviço
+# Etapa de build
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
-ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/Consilux.Backend.Microservice.Ticket.Api/Consilux.Backend.Microservice.Ticket.Api.csproj", "src/Consilux.Backend.Microservice.Ticket.Api/"]
-RUN dotnet restore "./src/Consilux.Backend.Microservice.Ticket.Api/Consilux.Backend.Microservice.Ticket.Api.csproj"
+
+# Copia a solução e os arquivos de projeto respeitando o caminho que a .sln espera (src/src)
+COPY AntiFraud.System.sln ./
+COPY src/src/AntiFraud.System.Api/AntiFraud.System.Api.csproj src/src/AntiFraud.System.Api/
+COPY src/src/AntiFraud.System.Domain/AntiFraud.System.Domain.csproj src/src/AntiFraud.System.Domain/
+COPY src/src/AntiFraud.System.Application/AntiFraud.System.Application.csproj src/src/AntiFraud.System.Application/
+COPY src/src/AntiFraud.System.Infrastructure/AntiFraud.System.Infrastructure.csproj src/src/AntiFraud.System.Infrastructure/
+COPY src/src/AntiFraud.System.BulidingBlocks/AntiFraud.System.BulidingBlocks.csproj src/src/AntiFraud.System.BulidingBlocks/
+COPY src/tests/AntiFraud.System.Unit.Test/AntiFraud.System.Unit.Test.csproj src/tests/AntiFraud.System.Unit.Test/
+COPY src/tests/AntiFraud.System.Integration.Test/AntiFraud.System.Integration.Test.csproj src/tests/AntiFraud.System.Integration.Test/
+
+# Restaura dependências
+RUN dotnet restore "AntiFraud.System.sln"
+
+# Copia o resto do código
 COPY . .
-WORKDIR "/src/src/Consilux.Backend.Microservice.Ticket.Api"
-RUN dotnet build "./Consilux.Backend.Microservice.Ticket.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-# Esta fase é usada para publicar o projeto de serviço a ser copiado para a fase final
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Consilux.Backend.Microservice.Ticket.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+# Compila e publica a API
+WORKDIR /src/src/src/AntiFraud.System.Api
+RUN dotnet publish -c Release -o /app/publish
 
-# Esta fase é usada na produção ou quando executada no VS no modo normal (padrão quando não está usando a configuração de Depuração)
-FROM base AS final
+# Etapa final (imagem enxuta)
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Consilux.Backend.Microservice.Ticket.Api.dll"]
+COPY --from=build /app/publish .
+EXPOSE 8080
+ENTRYPOINT ["dotnet", "AntiFraud.System.Api.dll"]
