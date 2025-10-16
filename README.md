@@ -146,8 +146,8 @@ A análise de uma transação deve aplicar as seguintes regras. Uma transação 
 - **AntiFraud.System.Worker**: Serviços de background e processamento assíncrono.
 
 **tests/**:
-- **Fortress.AntiFraud.Integration.Test**: Testes de integração entre componentes.
-- **Fortress.AntiFraud.Unit.Test**: Testes unitários para validar a lógica de classes e métodos.
+- **AntiFraud.Integration.Test**: Testes de integração entre componentes.
+- **AntiFraud.Unit.Test**: Testes unitários para validar a lógica de classes e métodos.
 
 ---
 
