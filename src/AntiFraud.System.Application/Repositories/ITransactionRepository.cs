@@ -7,5 +7,6 @@ namespace AntiFraud.System.Application.Repositories
         Task AddAsync(Transaction transaction, CancellationToken cancellationToken = default);
         void Update(Transaction transaction);
         Task<Transaction?> GetByIdForUpdateAsync(Guid id, CancellationToken cancellationToken = default);
+        Task<IEnumerable<Transaction>> GetTransactionsByIpAddressSince(string ipAddress, DateTimeOffset since, CancellationToken cancellationToken = default);
     }
 }

@@ -8,7 +8,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".solution items", ".solutio
 		.dockerignore = .dockerignore
 		.gitignore = .gitignore
 		Directory.Build.props = Directory.Build.props
-		Dockerfile = Dockerfile
 		Nuget.config = Nuget.config
 		README.md = README.md
 	EndProjectSection

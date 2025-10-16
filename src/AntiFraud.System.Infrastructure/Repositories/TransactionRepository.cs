@@ -10,6 +10,13 @@ namespace AntiFraud.System.Infrastructure.Repositories
     {
         private readonly ApplicationDbContext _context;
 
+        public async Task<IEnumerable<Transaction>> GetTransactionsByIpAddressSince(string ipAddress, DateTimeOffset since, CancellationToken cancellationToken = default)
+        {
+            return await _context.Transactions
+                .Where(t => t.IpAddress == ipAddress && t.TransactionDate >= since)
+                .ToListAsync(cancellationToken);
+        }
+
         public TransactionRepository(ApplicationDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));

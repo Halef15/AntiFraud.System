@@ -74,11 +74,9 @@ using (var scope = app.Services.CreateScope())
 
 // --- Configuração do Pipeline HTTP ---
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
@@ -88,6 +86,7 @@ app.MapControllers();
 
 #region Ciclo de Vida da Aplicação
 // Logs para eventos de ciclo de vida: Inicialização, Parada e Interrupção
+
 var lifetime = app.Services.GetRequiredService<IHostApplicationLifetime>();
 lifetime.ApplicationStarted.Register(() => app.Logger.LogInformation("[Start:WebApi]-[{Environment}] - [{Application}]", app.Environment.EnvironmentName, AppDomain.CurrentDomain.FriendlyName));
 lifetime.ApplicationStopping.Register(() => app.Logger.LogInformation("[Stopping:WebApi]-[{Environment}] - [{Application}]", app.Environment.EnvironmentName, AppDomain.CurrentDomain.FriendlyName));
