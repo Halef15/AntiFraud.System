@@ -58,6 +58,8 @@ namespace AntiFraud.System.Infrastructure.DependencyInjections
             services.AddScoped<ITransactionRepository, TransactionRepository>();
             services.AddScoped<ITransactionQueryRepository, TransactionRepository>();
 
+            services.AddScoped<IBlockedCardRepository, BlockedCardRepository>();
+
             // UnitOfWork
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 

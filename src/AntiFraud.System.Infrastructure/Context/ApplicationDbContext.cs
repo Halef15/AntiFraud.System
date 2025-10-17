@@ -6,6 +6,7 @@ namespace AntiFraud.System.Infrastructure.Context
     public class ApplicationDbContext : DbContext
     {
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<BlockedCard> BlockedCards { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

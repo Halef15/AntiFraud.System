@@ -1,27 +1,32 @@
 ﻿using AntiFraud.System.Application.Repositories;
 using AntiFraud.System.Domain.Entities;
+// Remova o using para o DbContext se ele ainda estiver aqui
 
 namespace AntiFraud.System.Application.Services
 {
     public class TransactionAnalysisService : ITransactionAnalysisService
     {
         private readonly ITransactionRepository _transactionRepository;
+        private readonly IBlockedCardRepository _blockedCardRepository; 
         private static readonly HashSet<string> HighRiskCountries = new HashSet<string> { "AF", "IR", "KP" };
-        private static readonly HashSet<string> CardNumberBlocklist = new HashSet<string> { "CARD_BLOCKED_NUMBER_1", "CARD_BLOCKED_NUMBER_2" };
 
-        public TransactionAnalysisService(ITransactionRepository transactionRepository)
+        public TransactionAnalysisService(
+            ITransactionRepository transactionRepository,
+            IBlockedCardRepository blockedCardRepository) // Receba a interface
         {
             _transactionRepository = transactionRepository;
+            _blockedCardRepository = blockedCardRepository;
         }
 
         public async Task AnalyzeTransaction(Transaction transaction)
         {
-            if (IsCardNumberInBlocklist(transaction.CardNumber))
+            if (await _blockedCardRepository.IsCardBlockedAsync(transaction.CardNumber))
             {
                 transaction.Reject();
                 return;
             }
 
+            // ... resto do método permanece o mesmo ...
             bool needsReview = false;
 
             if (IsAmountTooHigh(transaction.Amount))
@@ -49,11 +54,6 @@ namespace AntiFraud.System.Application.Services
             }
         }
 
-        private bool IsCardNumberInBlocklist(string cardNumber)
-        {
-            return CardNumberBlocklist.Contains(cardNumber);
-        }
-
         private bool IsAmountTooHigh(decimal amount)
         {
             return amount > 5000.00m;
@@ -63,7 +63,7 @@ namespace AntiFraud.System.Application.Services
         {
             var oneHourAgo = DateTimeOffset.UtcNow.AddHours(-1);
             var recentTransactions = await _transactionRepository.GetTransactionsByIpAddressSince(ipAddress, oneHourAgo);
-            return recentTransactions.Count() > 3;
+            return recentTransactions.Count() >= 3;
         }
 
         private bool IsInHighRiskCountry(string location)
