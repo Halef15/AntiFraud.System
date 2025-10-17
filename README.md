@@ -172,11 +172,12 @@ Aqui estão os principais itens:
   - `RABBITMQ_HOST=rabbitmq`
 
 ### Comandos para Executar
-Para executar a aplicação, utilize os seguintes comandos no diretório raiz:
+Para executar a aplicação, utilize os seguintes comandos no diretório raiz da solução:
 
 ```bash
 # Construir e executar os serviços no Docker
 docker compose -f docker/docker-compose.yaml up -d
+```
 
 ### Acessando os Serviços
 
